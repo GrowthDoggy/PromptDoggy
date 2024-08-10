@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full scroll-smooth bg-white antialiased">
+<html class="h-full scroll-smooth bg-white">
   <head>
     <title>PromptDoggy</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,9 +12,8 @@
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body class="flex h-full flex-col">
-    <main>
-      <%= yield %>
-    </main>
+  <body class="h-full">
+    <%= render partial: "layouts/flash_message" %>
+    <%= yield %>
   </body>
 </html>
