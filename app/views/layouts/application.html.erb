@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full scroll-smooth bg-white">
   <head>
     <title>PromptDoggy</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -9,11 +9,11 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+  <body class="h-full">
+    <%= render partial: "layouts/flash_message" %>
+    <%= yield %>
   </body>
 </html>
