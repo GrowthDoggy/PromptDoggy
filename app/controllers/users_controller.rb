@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # Log the user in and redirect to the homepage
+      session[:user_id] = @user.id
       flash[:success] = "Your account has been successfully created!"
       redirect_to "/"
     else
