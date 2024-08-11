@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'landing_page#index'
+  get 'about_us', to: 'landing_page#about_us'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

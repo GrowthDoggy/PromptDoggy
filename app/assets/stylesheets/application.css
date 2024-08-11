@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+
+/* Prevent scrolling while dialog is open */
+body:has(dialog[data-dialog-target='dialog'][open]) {
+    overflow: hidden;
+}
+
+/* Customize the dialog backdrop */
+dialog {
+    box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.5);
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Add animations */
+dialog[data-dialog-target='dialog'][open] {
+    animation: fade-in 200ms forwards;
+}
+
+dialog[data-dialog-target='dialog'][closing] {
+    animation: fade-out 200ms forwards;
+}
