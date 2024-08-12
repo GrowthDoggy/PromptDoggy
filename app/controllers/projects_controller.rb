@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   layout 'sidebar'
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user
 
   def index
     @projects = current_user.projects
