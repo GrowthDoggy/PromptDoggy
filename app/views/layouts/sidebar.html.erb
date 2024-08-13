@@ -14,6 +14,7 @@
   </head>
 
   <body class="h-full">
+    <%= render partial: "layouts/flash_message" %>
     <div data-controller="drawer">
       <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
       <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true" data-drawer-target="dialog">
@@ -61,58 +62,13 @@
             </div>
 
             <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
-              <div class="flex h-16 shrink-0 items-center">
-                <%= image_tag "logo.svg", class: "h-8 w-auto", alt: "PromptDoggy" %>
-              </div>
-              <nav class="flex flex-1 flex-col">
-                <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                  <li>
-                    <ul role="list" class="-mx-2 space-y-1">
-                      <li>
-                        <!-- Current: "bg-gray-50 text-indigo-600", Default: "text-gray-700 hover:text-indigo-600 hover:bg-gray-50" -->
-                        <a href="#" class="group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm font-semibold leading-6 text-indigo-600">
-                          <svg class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-                          </svg>
-                          Projects
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            <%= render "layouts/sidebar/mobile/#{@sidebar_partial || 'default'}" %>
           </div>
         </div>
       </div>
 
       <!-- Static sidebar for desktop -->
-      <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-        <!-- Sidebar component, swap this element with another sidebar if you like -->
-        <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
-          <div class="flex h-16 shrink-0 items-center">
-            <%= image_tag "logo.svg", class: "h-8 w-auto", alt: "PromptDoggy" %>
-          </div>
-          <nav class="flex flex-1 flex-col">
-            <ul role="list" class="flex flex-1 flex-col gap-y-7">
-              <li>
-                <ul role="list" class="-mx-2 space-y-1">
-                  <li>
-                    <!-- Current: "bg-gray-50 text-indigo-600", Default: "text-gray-700 hover:text-indigo-600 hover:bg-gray-50" -->
-                    <a href="<%= projects_path %>" class="group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm font-semibold leading-6 text-indigo-600">
-                      <svg class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-                      </svg>
-                      Projects
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+      <%= render "layouts/sidebar/desktop/#{@sidebar_partial || 'default'}" %>
 
       <div class="lg:pl-72">
         <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
@@ -182,5 +138,18 @@
         </main>
       </div>
     </div>
+
+    <!-- Initialize Tippy.js -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+        // handle partial page loads correctly
+        document.addEventListener("turbo:load", function() {
+            tippy('[data-tippy-content]', {
+                theme: 'light',
+                arrow: true,
+            });
+        });
+    </script>
   </body>
 </html>

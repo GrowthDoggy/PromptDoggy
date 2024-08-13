@@ -1,18 +1,11 @@
 class Project < ApplicationRecord
   belongs_to :projectable, polymorphic: true
-  before_create :generate_token
 
   validates :name, presence: true
-  validates :token, presence: true, uniqueness: true
 
-  private
+  has_secure_token :token
 
-  def generate_token
-    pp "Generating token..."
-    self.token = loop do
-      token = SecureRandom.alphanumeric(10)
-      break token unless Project.exists?(token: token)
-    end
-    pp self.token
+  def to_param
+    token
   end
 end

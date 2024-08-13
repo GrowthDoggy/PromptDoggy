@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user
+  before_action :set_sidebar_partial
 
   def index
     @projects = current_user.projects
@@ -48,5 +49,16 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name)
+  end
+
+  def set_sidebar_partial
+    @sidebar_partial = case action_name
+                       when 'show'
+                         'projects'
+                       when 'edit'
+                         'projects'
+                       else
+                         'default'
+                       end
   end
 end

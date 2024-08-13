@@ -49,9 +49,17 @@
                  data-transition-leave-to="opacity-0 scale-95"
             >
               <!-- Active: "bg-gray-50", Not Active: "" -->
-              <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="options-menu-0-item-0" data-action="dropdown#toggle">Edit<span class="sr-only">, GraphQL API</span></a>
-              <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="options-menu-0-item-1" data-action="dropdown#toggle">Move<span class="sr-only">, GraphQL API</span></a>
-              <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="options-menu-0-item-2" data-action="dropdown#toggle">Delete<span class="sr-only">, GraphQL API</span></a>
+              <a href="<%= edit_project_path(project) %>" class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-50" role="menuitem" tabindex="-1" id="options-menu-0-item-0" data-action="dropdown#toggle">Edit<span class="sr-only">, <%= project.name %></span></a>
+              <a href="#"
+                 class="block px-3 py-1 text-sm leading-6 text-gray-400 cursor-not-allowed"
+                 role="menuitem"
+                 tabindex="-1"
+                 id="options-menu-0-item-2"
+                 aria-disabled="true"
+                 data-tippy-content="Coming soon">
+                Delete
+                <span class="sr-only">, <%= project.name %></span>
+              </a>
             </div>
           </div>
         </div>
