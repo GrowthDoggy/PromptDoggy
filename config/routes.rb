@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   root 'landing_page#index'
   get 'about_us', to: 'landing_page#about_us'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 
   # auth routes
   resources :users, only: [:create]
@@ -14,5 +10,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
 
-  resources :projects, param: :token
+  resources :projects, param: :token do
+    resources :environments, param: :token
+  end
 end
