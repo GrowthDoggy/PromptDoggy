@@ -9,7 +9,7 @@
         <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Secure prompt management for developers</h1>
         <p class="mt-6 text-lg leading-8 text-gray-300">A tool designed to securely store, manage, and deploy prompts, seamlessly integrating into your CICD pipeline and ensuring high availability through CDN deployment.</p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
-          <%= link_to "Start for free", signup_path, class: "rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400" %>
+          <%= link_to "Start for free", logged_in? ? projects_path : signup_path, class: "rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400" %>
           <a href="#" class="text-sm font-semibold leading-6 text-white">Schedule a meeting <span aria-hidden="true">→</span></a>
         </div>
       </div>

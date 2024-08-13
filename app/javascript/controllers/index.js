@@ -11,4 +11,8 @@ eagerLoadControllersFrom("controllers", application)
 // lazyLoadControllersFrom("controllers", application)
 
 import Dialog from "@stimulus-components/dialog"
+import Dropdown from "@stimulus-components/dropdown"
+import Clipboard from "@stimulus-components/clipboard"
 application.register('dialog', Dialog)
+application.register('dropdown', Dropdown)
+application.register('clipboard', Clipboard)
