@@ -8,9 +8,11 @@ class Project < ApplicationRecord
   private
 
   def generate_token
+    pp "Generating token..."
     self.token = loop do
-      token = SecureRandom.alphanumeric(8)
+      token = SecureRandom.alphanumeric(10)
       break token unless Project.exists?(token: token)
     end
+    pp self.token
   end
 end

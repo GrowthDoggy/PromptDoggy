@@ -12,15 +12,15 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = current_user.projects.build
+    @project = current_user.projects.new
   end
 
   def create
-    @project = current_user.projects.build(project_params)
+    @project = current_user.projects.new(project_params)
     if @project.save
       redirect_to @project, flash: { success: "Project created successfully!" }
     else
-      render :new
+      render :new, status: :unprocessable_entity, flash: { error: "Failed to create project." }
     end
   end
 
