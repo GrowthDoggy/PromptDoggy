@@ -34,3 +34,4 @@
 !/app/assets/builds/.keep
 
 .idea/
+.env.development.local

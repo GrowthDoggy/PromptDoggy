@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prompt: one
+  environment: one
+  is_static: false
+
+two:
+  prompt: two
+  environment: two
+  is_static: false
