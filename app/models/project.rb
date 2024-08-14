@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :projectable, polymorphic: true
+  has_many :environments
 
   validates :name, presence: true
 

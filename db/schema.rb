@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_11_093158) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_13_134715) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "environments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "token", null: false
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_environments_on_project_id"
+    t.index ["token"], name: "index_environments_on_token", unique: true
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
@@ -22,7 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_11_093158) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["projectable_type", "projectable_id"], name: "index_projects_on_projectable"
-    t.index ["projectable_type", "projectable_id"], name: "index_projects_on_projectable_type_and_projectable_id"
     t.index ["token"], name: "index_projects_on_token", unique: true
   end
 
@@ -34,4 +43,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_11_093158) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "environments", "projects"
 end

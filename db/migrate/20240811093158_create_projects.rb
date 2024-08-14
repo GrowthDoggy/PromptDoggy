@@ -9,6 +9,5 @@ class CreateProjects < ActiveRecord::Migration[7.0]
     end
 
     add_index :projects, :token, unique: true
-    add_index :projects, [:projectable_type, :projectable_id]
   end
 end
