@@ -3,6 +3,7 @@ class EnvironmentsController < ApplicationController
 
   before_action :set_project
   before_action :set_environment, only: [:show, :edit, :update, :destroy]
+  before_action :set_sidebar_partial
 
   def index
     @environments = @project.environments
@@ -55,5 +56,9 @@ class EnvironmentsController < ApplicationController
 
   def environment_params
     params.require(:environment).permit(:name)
+  end
+
+  def set_sidebar_partial
+    @sidebar_partial = 'projects'
   end
 end
