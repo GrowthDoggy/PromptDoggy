@@ -1,9 +1,6 @@
-class ProjectsController < ApplicationController
-  layout 'sidebar'
-
+class ProjectsController < ConsoleController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user
-  before_action :set_sidebar_partial
 
   def index
     @projects = current_user.projects
@@ -42,10 +39,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-
-  def set_project
-    @project = current_user.projects.find_by!(token: params[:token])
-  end
 
   def project_params
     params.require(:project).permit(:name)

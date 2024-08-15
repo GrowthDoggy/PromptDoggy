@@ -1,7 +1,7 @@
 <div>
   <div>
     <nav class="sm:hidden" aria-label="Back">
-      <a href="<%= projects_path %>" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700">
+      <a href="<%= project_prompts_path(@project) %>" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700">
         <svg class="-ml-1 mr-1 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
         </svg>
@@ -12,7 +12,7 @@
       <ol role="list" class="flex items-center space-x-4">
         <li>
           <div class="flex">
-            <%= link_to "Projects", projects_path, class: "text-sm font-medium text-gray-500 hover:text-gray-700" %>
+            <%= link_to @project.name, project_path(@project), class: "text-sm font-medium text-gray-500 hover:text-gray-700" %>
           </div>
         </li>
         <li>
@@ -20,7 +20,7 @@
             <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
             </svg>
-            <%= link_to "Project details", project_path(@project), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" %>
+            <%= link_to "Prompts", project_prompts_path(@project), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" %>
           </div>
         </li>
         <li>
@@ -28,7 +28,15 @@
             <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
             </svg>
-            <a href="#" aria-current="page" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Edit project</a>
+            <%= link_to "Prompt Details", project_prompt_path(@project, @prompt), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" %>
+          </div>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+            </svg>
+            <a href="#" aria-current="page" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Edit Prompt</a>
           </div>
         </li>
       </ol>
@@ -36,7 +44,7 @@
   </div>
   <div class="mt-4 md:flex md:items-center md:justify-between">
     <div class="min-w-0 flex-1">
-      <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight"><%= @project.name %></h2>
+      <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight"><%= @prompt.name %></h2>
     </div>
   </div>
 </div>

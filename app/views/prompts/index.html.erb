@@ -1,0 +1,68 @@
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Prompts</h1>
+      <p class="mt-2 text-sm text-gray-700">All the prompts under <%= link_to @project.name, project_path(@project), class: "text-indigo-600 font-semibold" %>.</p>
+    </div>
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+      <%= link_to "New prompt", new_project_prompt_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+    </div>
+  </div>
+  <ul role="list" class="divide-y divide-gray-100 mt-8">
+    <% @prompts.each do |prompt| %>
+      <li class="flex items-center justify-between gap-x-6 py-5">
+        <div class="min-w-0">
+          <div class="flex items-start gap-x-3">
+            <p class="text-sm font-semibold leading-6 text-gray-900" data-clipboard-target="source"><%= prompt.name %></p>
+          </div>
+        </div>
+        <div class="flex flex-none items-center gap-x-4">
+          <a href="<%= project_prompt_path(@project, prompt) %>" class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">View prompt<span class="sr-only">, <%= prompt.name %></span></a>
+          <div class="relative flex-none" data-controller="dropdown">
+            <button type="button" class="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900" id="options-menu-0-button" aria-expanded="false" aria-haspopup="true" data-action="dropdown#toggle click@window->dropdown#hide">
+              <span class="sr-only">Open options</span>
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z" />
+              </svg>
+            </button>
+            <div class="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+                 role="menu" aria-orientation="vertical"
+                 aria-labelledby="options-menu-0-button"
+                 tabindex="-1"
+                 data-dropdown-target="menu"
+                 data-transition-enter-active="transition ease-out duration-100"
+                 data-transition-enter-from="opacity-0 scale-95"
+                 data-transition-enter-to="opacity-100 scale-100"
+                 data-transition-leave-active="transition ease-in duration-100"
+                 data-transition-leave-from="opacity-100 scale-100"
+                 data-transition-leave-to="opacity-0 scale-95"
+            >
+              <!-- Active: "bg-gray-50", Not Active: "" -->
+              <a href="<%= edit_project_prompt_path(@project, prompt) %>" class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-50" role="menuitem" tabindex="-1" id="options-menu-0-item-0" data-action="dropdown#toggle">Edit<span class="sr-only">, <%= prompt.name %></span></a>
+              <a href="#"
+                 class="block px-3 py-1 text-sm leading-6 text-gray-400 cursor-not-allowed"
+                 role="menuitem"
+                 tabindex="-1"
+                 id="options-menu-0-item-2"
+                 aria-disabled="true"
+                 data-tippy-content="Coming soon">
+                Version history
+                <span class="sr-only">, <%= prompt.name %></span>
+              </a>
+              <a href="#"
+                 class="block px-3 py-1 text-sm leading-6 text-gray-400 cursor-not-allowed"
+                 role="menuitem"
+                 tabindex="-1"
+                 id="options-menu-0-item-2"
+                 aria-disabled="true"
+                 data-tippy-content="Coming soon">
+                Delete
+                <span class="sr-only">, <%= prompt.name %></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

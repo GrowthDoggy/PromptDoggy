@@ -9,3 +9,4 @@ pin "@stimulus-components/dialog", to: "@stimulus-components--dialog.js" # @1.0.
 pin "@stimulus-components/dropdown", to: "@stimulus-components--dropdown.js" # @3.0.0
 pin "stimulus-use" # @0.52.2
 pin "@stimulus-components/clipboard", to: "@stimulus-components--clipboard.js" # @5.0.0
+pin "stimulus-textarea-autogrow" # @4.1.0

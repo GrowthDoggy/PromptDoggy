@@ -1,9 +1,5 @@
-class EnvironmentsController < ApplicationController
-  layout 'sidebar'
-
-  before_action :set_project
+class EnvironmentsController < ConsoleController
   before_action :set_environment, only: [:show, :edit, :update, :destroy]
-  before_action :set_sidebar_partial
 
   def index
     @environments = @project.environments
@@ -46,19 +42,11 @@ class EnvironmentsController < ApplicationController
 
   private
 
-  def set_project
-    @project = current_user.projects.find_by!(token: params[:project_token])
-  end
-
   def set_environment
     @environment = @project.environments.find_by!(token: params[:token])
   end
 
   def environment_params
     params.require(:environment).permit(:name)
-  end
-
-  def set_sidebar_partial
-    @sidebar_partial = 'projects'
   end
 end

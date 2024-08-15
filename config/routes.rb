@@ -11,6 +11,11 @@ Rails.application.routes.draw do
 
 
   resources :projects, param: :token do
+    resources :prompts do
+      member do
+        post 'deploy'
+      end
+    end
     resources :environments, param: :token
   end
 end
