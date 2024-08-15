@@ -89,6 +89,7 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dotenv (3.1.2)
     erubi (1.13.0)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
@@ -143,6 +144,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
+    paper_trail (15.1.0)
+      activerecord (>= 6.1)
+      request_store (~> 1.4)
     pg (1.5.7)
     psych (5.1.2)
       stringio
@@ -191,6 +195,8 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
+    request_store (1.7.0)
+      rack (>= 1.4)
     rexml (3.3.4)
       strscan
     rubyzip (2.3.2)
@@ -245,9 +251,11 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  dotenv
   hotwire-livereload
   importmap-rails
   jbuilder
+  paper_trail
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.4)

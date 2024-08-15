@@ -13,6 +13,8 @@ eagerLoadControllersFrom("controllers", application)
 import Dialog from "@stimulus-components/dialog"
 import Dropdown from "@stimulus-components/dropdown"
 import Clipboard from "@stimulus-components/clipboard"
+import TextareaAutogrow from "stimulus-textarea-autogrow"
 application.register('dialog', Dialog)
 application.register('dropdown', Dropdown)
 application.register('clipboard', Clipboard)
+application.register('textarea-autogrow', TextareaAutogrow)
