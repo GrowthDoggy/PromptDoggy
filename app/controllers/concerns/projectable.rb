@@ -8,7 +8,7 @@ module Projectable
   private
 
   def set_project
-    project_identifier = params[:token] || params[:project_token]
+    project_identifier = params[:project_token] || params[:token]
     @project = current_user.projects.find_by!(token: project_identifier)
   end
 end
