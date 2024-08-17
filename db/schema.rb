@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_14_112536) do
   create_table "deployments", force: :cascade do |t|
     t.bigint "prompt_id", null: false
     t.bigint "environment_id", null: false
-    t.boolean "is_static"
+    t.boolean "is_static", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["environment_id"], name: "index_deployments_on_environment_id"

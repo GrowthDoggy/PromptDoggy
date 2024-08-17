@@ -29,7 +29,7 @@ class ProjectsController < ConsoleController
     if @project.update(project_params)
       redirect_to @project, flash: { success: "Project updated successfully!" }
     else
-      render :edit
+      render :edit, status: :unprocessable_entity, flash: { error: "Failed to update project." }
     end
   end
 
