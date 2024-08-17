@@ -42,16 +42,10 @@ class PromptsController < ConsoleController
 
   def deploy
     environment = @project.environments.find(deploy_params[:environment_id])
-
     deployment = Deployment.new(prompt: @prompt, environment: environment, is_static: deploy_params[:is_static])
-
-    pp 'xxxxx'
-    pp deploy_params[:is_static]
-
     if deployment.save
       redirect_to [@project, @prompt], flash: { success: 'Prompt was successfully deployed.' }
     else
-      pp deployment.errors.full_messages.join(', ')
       render :show, status: :unprocessable_entity, flash: { error: 'Failed to deploy the prompt. Please try again.' }
     end
   end
@@ -69,6 +63,7 @@ class PromptsController < ConsoleController
   def deploy_params
     params.permit(:environment_id, :is_static).tap do |deployment_params|
       raise ActionController::ParameterMissing.new(:environment_id) if deployment_params[:environment_id].blank?
+      deployment_params[:is_static] = false unless deployment_params.key?(:is_static)
     end
   end
 
