@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       flash[:error] = "Registration failed. Please check your input and try again."
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

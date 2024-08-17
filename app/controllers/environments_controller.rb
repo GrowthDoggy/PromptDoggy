@@ -17,7 +17,7 @@ class EnvironmentsController < ConsoleController
     if @environment.save
       redirect_to project_environment_path(@project, @environment), flash: { success: 'Environment created successfully!' }
     else
-      render :new, flash: { error: 'Environment creation failed.' }
+      render :new, status: :internal_server_error, flash: { error: 'Environment creation failed.' }
     end
   end
 
@@ -28,7 +28,7 @@ class EnvironmentsController < ConsoleController
     if @environment.update(environment_params)
       redirect_to project_environment_path(@project, @environment), flash: { success: 'Environment updated successfully!' }
     else
-      render :edit, flash: { error: 'Environment update failed.' }
+      render :edit, status: :internal_server_error, flash: { error: 'Environment update failed.' }
     end
   end
 

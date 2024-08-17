@@ -9,4 +9,11 @@ class Prompt < ApplicationRecord
   # TODO: Add an unique index to the name and project_id columns?
   validates :name, presence: true, uniqueness: { scope: :project_id }
 
+  # https://stackoverflow.com/a/5263322/3970355
+  scope :last_static_deployment, -> (is_static) {
+    joins(:deployments)
+      .where('deployments.created_at = (SELECT MAX(deployments.created_at) FROM deployments WHERE deployments.prompt_id = prompts.id)')
+      .where('deployments.is_static = ?', is_static)
+      .group('prompts.id')
+  }
 end
