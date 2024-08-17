@@ -1,9 +1,12 @@
-class Api::V1::PromptsController < ApplicationController
+class Api::V1::PromptsController < Api::BaseController
+  before_action :authenticate_with_api_key!
+
   before_action :set_project
   before_action :set_environment
 
 
   def index
+    # TODO: implement current_user by API token
     @prompts = @project.prompts
 
     # Add a conditional to filter prompts by the is_static parameter.
