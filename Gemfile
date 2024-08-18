@@ -78,3 +78,4 @@ group :test do
 end
 
 gem "paper_trail"
+gem "aws-sdk-s3", require: false
