@@ -1,0 +1,40 @@
+<main>
+  <div class="border-b border-gray-200 pb-5 sm:pb-0">
+    <h1 class="text-2xl font-semibold leading-6 text-gray-900">Settings</h1>
+    <div class="mt-3 sm:mt-4">
+      <!-- Dropdown menu on small screens -->
+      <div class="sm:hidden">
+        <label for="current-tab" class="sr-only">Select a tab</label>
+        <select id="current-tab" name="current-tab" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+          <option selected>Developer</option>
+        </select>
+      </div>
+      <!-- Tabs at small breakpoint and up -->
+      <div class="hidden sm:block">
+        <nav class="-mb-px flex space-x-8">
+          <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+          <a href="#" class="whitespace-nowrap border-b-2 border-indigo-500 px-1 pb-4 text-sm font-medium text-indigo-600" aria-current="page">Developer</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mt-12">
+    <div class="mt-6 border-t border-gray-100">
+      <dl class="divide-y divide-gray-100">
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" data-controller="clipboard" data-clipboard-success-content-value="Copied!">
+          <dt class="text-sm font-medium leading-6 text-gray-900">API Key</dt>
+          <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <span class="flex-grow"><code id="masked-key"><%= @masked_api_key %></code></span>
+            <input type="hidden" value="<%= @full_api_key %>" data-clipboard-target="source" />
+            <span class="ml-4 flex-shrink-0">
+              <button type="button" data-action="clipboard#copy" data-clipboard-target="button" class="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500">Copy</button>
+            </span>
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+  </div>
+
+</main>

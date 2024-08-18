@@ -6,7 +6,6 @@ class Api::V1::PromptsController < Api::BaseController
 
 
   def index
-    # TODO: implement current_user by API token
     @prompts = @project.prompts
 
     # Add a conditional to filter prompts by the is_static parameter.
@@ -17,8 +16,7 @@ class Api::V1::PromptsController < Api::BaseController
 
     # Add a conditional to filter prompts by the is_deployed parameter.
     if params[:is_deployed].present?
-      is_deployed = ActiveModel::Type::Boolean.new.cast(params[:is_deployed])
-      if is_deployed
+      if ActiveModel::Type::Boolean.new.cast(params[:is_deployed])
         @prompts = @prompts.joins(:deployments)
                            .where(deployments: { environment_id: @environment.id })
       end
@@ -37,9 +35,8 @@ class Api::V1::PromptsController < Api::BaseController
 
   private
 
-  # TODO: Implement current_user by API token
   def set_project
-    @project = Project.find_by!(token: params[:project_token])
+    @project = @current_user.projects.find_by!(token: params[:project_token])
   end
 
   def set_environment
