@@ -44,6 +44,14 @@ class PromptsController < ConsoleController
     environment = @project.environments.find(deploy_params[:environment_id])
     deployment = Deployment.new(prompt: @prompt, environment: environment, is_static: deploy_params[:is_static])
     if deployment.save
+      json_content = generate_deploy_content(deployment)
+      # https://stackoverflow.com/a/70868577/3970355 - custom key for ActiveStorage
+      deployment.deployed_file.attach(
+        io: StringIO.new(json_content),
+        key: "prompts/#{@project.token}/#{environment.token}/#{@prompt.name}.json",
+        filename: "#{@project.token}_#{environment.token}_#{@prompt.name}.json",
+        content_type: "application/json"
+      )
       redirect_to [@project, @prompt], flash: { success: 'Prompt was successfully deployed.' }
     else
       render :show, status: :unprocessable_entity, flash: { error: 'Failed to deploy the prompt. Please try again.' }
@@ -70,5 +78,9 @@ class PromptsController < ConsoleController
   def handle_missing_param(exception)
     flash.now[:warning] = "Param #{exception.param} is required."
     render :show, status: :forbidden
+  end
+
+  def generate_deploy_content(deployment)
+    deployment.to_json
   end
 end
