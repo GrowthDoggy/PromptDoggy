@@ -37,5 +37,7 @@ Rails.application.routes.draw do
     resources :environments, param: :token
   end
 
+  post 'copilots/prompts', to: 'copilots#prompts'
+
   get 'settings', to: 'settings#show'
 end
