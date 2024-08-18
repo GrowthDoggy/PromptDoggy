@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       # Log the user in and redirect to the homepage
       session[:user_id] = @user.id
       flash[:success] = "Your account has been successfully created!"
-      redirect_to root_path
+      redirect_to projects_path
     else
       flash[:error] = "Registration failed. Please check your input and try again."
       render :new, status: :unprocessable_entity

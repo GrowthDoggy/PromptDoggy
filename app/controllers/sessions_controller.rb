@@ -7,14 +7,15 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to projects_path, flash: { success: "You have successfully logged in." }
     else
-      render :new, status: :unauthorized, flash: { error: "Invalid email or password" }
+      flash.now["error"] = "Invalid email or password"
+      render :new, status: :unauthorized
     end
   end
 
   def destroy
     log_out
-    redirect_to login_path, flash: { success: "You have successfully logged out" }
+    redirect_to login_path, flash: { success: "You have successfully logged out." }
   end
 end

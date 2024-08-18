@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_14_112536) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_17_025944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_keys", force: :cascade do |t|
+    t.string "bearer_type", null: false
+    t.bigint "bearer_id", null: false
+    t.string "token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bearer_type", "bearer_id"], name: "index_api_keys_on_bearer"
+    t.index ["token"], name: "index_api_keys_on_token", unique: true
+  end
 
   create_table "deployments", force: :cascade do |t|
     t.bigint "prompt_id", null: false

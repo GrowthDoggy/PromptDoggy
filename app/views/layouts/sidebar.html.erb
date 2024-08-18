@@ -124,7 +124,7 @@
                      data-transition-leave-to="opacity-0 scale-95"
                 >
                   <!-- Active: "bg-gray-50", Not Active: "" -->
-                  <a href="<%= logout_path %>" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-1" data-action="dropdown#toggle">Sign out</a>
+                  <%= link_to "Log out", logout_path, class: "block px-3 py-1 text-sm leading-6 text-gray-900", role: "menuitem", tabindex: "-1", id: "user-menu-item-1", data: { action: "dropdown#toggle", turbo_method: :delete } %>
                 </div>
               </div>
             </div>

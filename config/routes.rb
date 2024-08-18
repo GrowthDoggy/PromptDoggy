@@ -36,4 +36,6 @@ Rails.application.routes.draw do
     end
     resources :environments, param: :token
   end
+
+  get 'settings', to: 'settings#show'
 end
