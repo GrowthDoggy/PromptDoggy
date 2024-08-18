@@ -25,6 +25,11 @@ export default class extends Controller {
       return; // Do not make a fetch request
     }
 
+    // Check if the cursor is at the end of the input
+    if (this.cursorPosition !== this.currentInput.length) {
+      return; // Do not make a fetch request if cursor is not at the end
+    }
+
     // Start a new timer
     this.typingTimer = setTimeout(() => {
       // Fetch suggestion from the backend
@@ -52,9 +57,22 @@ export default class extends Controller {
   }
 
   acceptSuggestion(event) {
-    if (event.key === "Tab") {
+    // FIXME: suggestionText is not being updated correctly into textarea
+    if (event.key === "Tab" && this.suggestionText) {
       event.preventDefault();
-      this.inputTarget.value += this.suggestionText;
+
+      const inputElement = this.inputTarget;
+      const cursorPosition = inputElement.selectionStart;
+
+      inputElement.setRangeText(
+          this.suggestionText,
+          cursorPosition,
+          cursorPosition,
+          "end"
+      );
+
+      inputElement.selectionStart = inputElement.selectionEnd = cursorPosition + this.suggestionText.length;
+
       this.suggestionText = "";
       this.updateSuggestion();
     }

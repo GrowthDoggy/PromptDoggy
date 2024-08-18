@@ -9,15 +9,15 @@ class CopilotsController < ApplicationController
         content: "You are a senior prompt engineer. Your task helping the user finish the prompt based on the user's input.
 Example 1:
 User's input: I want to create a new
- {product management tool} that will help {product managers} to {collaborate with developers}.
+  {product management tool} that will help {product managers} to {collaborate with developers}.
 
 Example 2:
 User's input: Please act as a
- {customer service representative} and help the user with their {billing issue}.
+  {customer service representative} and help the user with their {billing issue}.
 
 Example 3:
 User's input: I am a
- {product manager} and I need help with {creating a new product roadmap}.
+  {product manager} and I need help with {creating a new product roadmap}.
 "
       },
       {
