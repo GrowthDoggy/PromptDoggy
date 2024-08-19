@@ -42,20 +42,36 @@ class PromptsController < ConsoleController
 
   def deploy
     environment = @project.environments.find(deploy_params[:environment_id])
-    deployment = Deployment.new(prompt: @prompt, environment: environment, is_static: deploy_params[:is_static])
-    if deployment.save
+
+    ActiveRecord::Base.transaction do
+      deployment = Deployment.new(prompt: @prompt, environment: environment, is_static: deploy_params[:is_static])
+      deployment.save!
+
       json_content = generate_deploy_content(deployment)
-      # https://stackoverflow.com/a/70868577/3970355 - custom key for ActiveStorage
-      deployment.deployed_file.attach(
+
+      # Purge the existing file if it exists
+      # https://api.rubyonrails.org/v7.1/classes/ActiveStorage/Blob.html
+      # Blobs are intended to be immutable in as-so-far as their reference to a specific file goes. You’re allowed to update a blob’s metadata on a subsequent pass, but you should not update the key or change the uploaded file. If you need to create a derivative or otherwise change the blob, simply create a new blob and purge the old one.
+      if @prompt.deployed_file.attached?
+        @prompt.deployed_file.purge
+      end
+
+      # Attach the new file
+      @prompt.deployed_file.attach(
         io: StringIO.new(json_content),
         key: "prompts/#{@project.token}/#{environment.token}/#{@prompt.name}.json",
         filename: "#{@project.token}_#{environment.token}_#{@prompt.name}.json",
         content_type: "application/json"
       )
-      redirect_to [@project, @prompt], flash: { success: 'Prompt was successfully deployed.' }
-    else
-      render :show, status: :unprocessable_entity, flash: { error: 'Failed to deploy the prompt. Please try again.' }
     end
+
+    # If the transaction is successful, redirect the user
+    redirect_to [@project, @prompt], flash: { success: 'Prompt was successfully deployed.' }
+
+  rescue ActiveRecord::RecordInvalid
+    # If the save fails or any other ActiveRecord-related error occurs, render the form again
+    flash.now[:error] = 'Failed to deploy the prompt. Please try again.'
+    render :show, status: :unprocessable_entity
   end
 
   private

@@ -9,6 +9,8 @@ class Prompt < ApplicationRecord
   # TODO: Add an unique index to the name and project_id columns?
   validates :name, presence: true, uniqueness: { scope: :project_id }
 
+  has_one_attached :deployed_file
+
   # https://stackoverflow.com/a/5263322/3970355
   scope :last_static_deployment, -> (is_static) {
     joins(:deployments)
@@ -16,4 +18,8 @@ class Prompt < ApplicationRecord
       .where('deployments.is_static = ?', is_static)
       .group('prompts.id')
   }
+
+  def as_json(options = {})
+    super(options.merge(only: %i[id name content created_at updated_at]))
+  end
 end
