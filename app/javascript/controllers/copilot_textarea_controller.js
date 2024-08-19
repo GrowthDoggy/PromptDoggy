@@ -57,24 +57,16 @@ export default class extends Controller {
   }
 
   acceptSuggestion(event) {
-    // FIXME: suggestionText is not being updated correctly into textarea
     if (event.key === "Tab" && this.suggestionText) {
       event.preventDefault();
 
-      const inputElement = this.inputTarget;
-      const cursorPosition = inputElement.selectionStart;
-
-      inputElement.setRangeText(
-          this.suggestionText,
-          cursorPosition,
-          cursorPosition,
-          "end"
-      );
-
-      inputElement.selectionStart = inputElement.selectionEnd = cursorPosition + this.suggestionText.length;
+      // Insert the suggestion text at the cursor position
+      this.inputTarget.value += this.suggestionText;
 
       this.suggestionText = "";
       this.updateSuggestion();
     }
+
+    console.log(this.inputTarget.value)
   }
 }
