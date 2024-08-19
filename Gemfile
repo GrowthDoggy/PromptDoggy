@@ -79,3 +79,4 @@ end
 
 gem "paper_trail"
 gem "aws-sdk-s3", require: false
+gem "ruby-openai", "~> 7.1.0"
