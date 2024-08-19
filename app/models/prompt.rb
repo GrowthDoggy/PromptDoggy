@@ -18,4 +18,8 @@ class Prompt < ApplicationRecord
       .where('deployments.is_static = ?', is_static)
       .group('prompts.id')
   }
+
+  def as_json(options = {})
+    super(options.merge(only: %i[id name content created_at updated_at]))
+  end
 end
