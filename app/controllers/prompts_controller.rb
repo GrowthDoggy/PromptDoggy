@@ -47,8 +47,6 @@ class PromptsController < ConsoleController
       deployment = Deployment.new(prompt: @prompt, environment: environment, is_static: deploy_params[:is_static])
       deployment.save!
 
-      json_content = generate_deploy_content(deployment)
-
       # Purge the existing file if it exists
       # https://api.rubyonrails.org/v7.1/classes/ActiveStorage/Blob.html
       # Blobs are intended to be immutable in as-so-far as their reference to a specific file goes. You’re allowed to update a blob’s metadata on a subsequent pass, but you should not update the key or change the uploaded file. If you need to create a derivative or otherwise change the blob, simply create a new blob and purge the old one.
@@ -58,7 +56,7 @@ class PromptsController < ConsoleController
 
       # Attach the new file
       @prompt.deployed_file.attach(
-        io: StringIO.new(json_content),
+        io: StringIO.new(@prompt.to_json),
         key: "prompts/#{@project.token}/#{environment.token}/#{@prompt.name}.json",
         filename: "#{@project.token}_#{environment.token}_#{@prompt.name}.json",
         content_type: "application/json"
@@ -94,9 +92,5 @@ class PromptsController < ConsoleController
   def handle_missing_param(exception)
     flash.now[:warning] = "Param #{exception.param} is required."
     render :show, status: :forbidden
-  end
-
-  def generate_deploy_content(deployment)
-    deployment.to_json
   end
 end
