@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     end
   end
   root 'landing_page#index'
-  get 'about_us', to: 'landing_page#about_us'
 
   # auth routes
   resources :users, only: [:create]
