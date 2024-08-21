@@ -1,13 +1,16 @@
-# fly.toml app configuration file generated for promptdoggy on 2024-08-21T21:47:52+08:00
+# fly.toml app configuration file generated for promptdoggy-demo on 2024-08-22T07:13:01+08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "promptdoggy"
+app = "promptdoggy-demo"
 primary_region = "sin"
 console_command = "/rails/bin/rails console"
 
 [build]
+
+[deploy]
+  release_command = "./bin/rails db:prepare"
 
 [http_service]
   internal_port = 3000
@@ -16,6 +19,11 @@ console_command = "/rails/bin/rails console"
   auto_start_machines = true
   min_machines_running = 0
   processes = ["app"]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 512
 
 [[statics]]
   guest_path = "/rails/public"
