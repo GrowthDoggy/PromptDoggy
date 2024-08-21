@@ -10,7 +10,11 @@
         <p class="mt-6 text-lg leading-8 text-gray-300">Manage prompts without changing any code, accessing them via API, and ensuring high availability through S3 storage and CDN access.</p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <%= link_to "Start for free", logged_in? ? projects_path : signup_path, class: "rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400" %>
-          <a href="#" class="text-sm font-semibold leading-6 text-white">Schedule a meeting <span aria-hidden="true">→</span></a>
+          <!-- Calendly link widget begin -->
+          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+          <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/zhenhangtung/promptdoggy-15min'});return false;" class="text-sm font-semibold leading-6 text-white">Schedule a meeting <span aria-hidden="true">→</span></a>
+          <!-- Calendly link widget end -->
         </div>
       </div>
     </div>
