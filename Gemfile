@@ -80,3 +80,4 @@ end
 gem "paper_trail"
 gem "aws-sdk-s3", require: false
 gem "ruby-openai", "~> 7.1.0"
+gem "dockerfile-rails", ">= 1.6", :group => :development
