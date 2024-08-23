@@ -2,14 +2,28 @@
 Prompt management tool for product and engineering teams.
 
 ## Live Demo
+### [Management Console](https://demo.promptdoggy.com/login)
+* Email: demo@promptdoggy.com
+* Password: password123
+
+### API
+1. Copy the API key from the [settings page](https://demo.promptdoggy.com/settings).
+2. Include it as a header in the Bearer token format in the request header.
+3. Access the API using the following endpoints:
+   * Prompt list: `GET /api/v1/projects/:project_token/environments/:environment_token/prompts`
+     * `is_deployed`: Retrieve only deployed prompts
+     * `is_static`: Retrieve only static prompts
+   * Get prompt content: `GET /api/v1/projects/:project_token/environments/:environment_token/prompts/:prompt_name`
 
 
 ## Features
 ### Current features
-* Project, environment, prompt creation
-* Access prompts with API
-* Copilot textarea: assist you to write prompts with OpenAI
-* Deploy prompts to S3 bucket
+- **Prompt Management Dashboard for Product Managers:** Product managers can write prompts and deploy them to different environments, such as development or production.
+- **APIs for Engineers to Fetch Prompts:** Engineers can retrieve prompts by name through the API.
+- **Copilot Textarea:** Inspired by GitHub Copilot, we implemented a similar experience to see if it could benefit product managers.
+- **Static Prompts:** For prompts that don’t change often, such as system prompts, you can mark them as static. This allows filtering in the API and caching during the CI process.
+- **Hosting Prompts on S3 and Accessing Them Through CloudFront:** This setup provides faster access and enables you to host PromptDoggy on a low-cost server without worrying about concurrency issues.
+- **Encryption:** All prompts are encrypted in the database and are client-encrypted when uploaded to S3. We believe prompts are a vital secret for any LLM app, with PMs and engineers spending countless hours tweaking and testing them. We want to ensure they are secure and inaccessible to others.
 
 #### Planned features
 - [ ] Role based prompt management
@@ -46,3 +60,8 @@ These are the questions I'm exploring and trying to answer with PromptDoggy:
 ## Note
 ⚠️This project is still in early and rapid development.
 Features will be iterated quickly or may even be deprecated based on community feedback.
+
+## Contact
+* Email: zhenhangtung@gmail.com
+* Wechat: leontung7
+![Wechat Contact](readme/ContactWechat.JPG)

@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
-      get 'prompts/index'
-      get 'prompts/show'
-    end
-  end
   root 'landing_page#index'
 
   # auth routes
