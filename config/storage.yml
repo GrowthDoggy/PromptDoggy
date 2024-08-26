@@ -14,17 +14,6 @@ local:
 #   region: us-east-1
 #   bucket: your_own_bucket-<%= Rails.env %>
 
-amazon_encrypted:
-  service: EncryptedS3
-  access_key_id: <%= ENV["AWS_KEY_ID"] %>
-  secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
-  region: <%= ENV["AWS_S3_REGION"] %>
-  bucket: <%= ENV["AWS_S3_BUCKET"] %>
-  kms_key_id: <%= ENV["AWS_KMS_KEY_ID"] %>
-  key_wrap_schema: :kms_context
-  content_encryption_schema: :aes_gcm_no_padding
-  security_profile: :v2
-
 # Remember not to checkin your GCS keyfile to a repository
 # google:
 #   service: GCS
