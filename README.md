@@ -22,8 +22,7 @@ Prompt management tool for product and engineering teams.
 - **APIs for Engineers to Fetch Prompts:** Engineers can retrieve prompts by name through the API.
 - **Copilot Textarea:** Inspired by GitHub Copilot, we implemented a similar experience to see if it could benefit product managers.
 - **Static Prompts:** For prompts that don’t change often, such as system prompts, you can mark them as static. This allows filtering in the API and caching during the CI process.
-- **Hosting Prompts on S3 and Accessing Them Through CloudFront:** This setup provides faster access and enables you to host PromptDoggy on a low-cost server without worrying about concurrency issues.
-- **Encryption:** All prompts are encrypted in the database and are client-encrypted when uploaded to S3. We believe prompts are a vital secret for any LLM app, with PMs and engineers spending countless hours tweaking and testing them. We want to ensure they are secure and inaccessible to others.
+- **Encryption:** All prompts are encrypted in the database. We believe prompts are a vital secret for any LLM app, with PMs and engineers spending countless hours tweaking and testing them. We want to ensure they are secure and inaccessible to others.
 
 #### Planned features
 - [ ] Role based prompt management
@@ -44,7 +43,6 @@ These are the questions I'm exploring and trying to answer with PromptDoggy:
 * Ruby 3.2.2+
 * PostgreSQL
 * Azure OpenAI
-* AWS S3 and KMS
 
 ### Installation
 * Clone the repository: `git clone git@github.com:PromptDoggy/PromptDoggy.git`
