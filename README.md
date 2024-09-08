@@ -1,6 +1,9 @@
 # PromptDoggy
 Prompt management tool for product and engineering teams.
 
+## Archive Notice
+After two weeks of intensive discussions and iterations, we have decided to pivot towards developing a BI tool. As a result, we are temporarily halting development on PromptDoggy.
+
 ## Live Demo
 ### [Management Console](https://demo.promptdoggy.com/login)
 * Email: demo@promptdoggy.com
@@ -27,8 +30,6 @@ Prompt management tool for product and engineering teams.
 #### Planned features
 - [ ] Role based prompt management
 - [ ] Project, environment, prompt deletion
-
-I'm not sure about other features as I don't plan too far ahead. If there is a feature you would like to see, feel free to [schedule a call with me](https://calendly.com/zhenhangtung/promptdoggy-15min).
 
 ### Questions to be explored
 These are the questions I'm exploring and trying to answer with PromptDoggy:
@@ -61,5 +62,3 @@ Features will be iterated quickly or may even be deprecated based on community f
 
 ## Contact
 * Email: zhenhangtung@gmail.com
-* Wechat: leontung7
-![Wechat Contact](readme/ContactWechat.JPG)
